@@ -31,6 +31,42 @@ Skills live in `.agents/skills/`. Invoke them by name (e.g., `/office-hours`).
 | `/unfreeze` | Remove directory edit restrictions. |
 | `/gstack-upgrade` | Update gstack to the latest version. |
 
+## OpenCode Integration
+
+gstack now includes built-in support for OpenCode, allowing you to use gstack skills within the OpenCode interface.
+
+### How to Use gstack Skills in OpenCode
+
+1. **Access via Command Dialog**: Press `Ctrl+K` in OpenCode to open the command dialog
+2. **Find gstack Commands**: Type `gstack:` to see all available gstack skills
+3. **Select a Skill**: Choose from the list (e.g., `gstack:office-hours`, `gstack:plan-ceo-review`)
+4. **Provide Input**: Optionally provide arguments when prompted
+5. **See Results**: Watch the skill execute and return results to your OpenCode session
+6. **Continue Working**: Refine results through natural conversation in OpenCode
+
+### Available gstack Commands in OpenCode
+
+- `gstack:office-hours` - Start here. Reframes your product idea before you write code.
+- `gstack:plan-ceo-review` - CEO-level review: find the 10-star product in the request.
+- `gstack:plan-eng-review` - Lock architecture, data flow, edge cases, and tests.
+- `gstack:design-consultation` - Build a complete design system from scratch.
+- `gstack:review` - Pre-landing PR review. Finds bugs that pass CI but break in prod.
+- `gstack:debug` - Systematic root-cause debugging. No fixes without investigation.
+- `gstack:ship` - Run tests, review, push, open PR. One command.
+- `gstack:qa` - Open a real browser, find bugs, fix them, re-verify.
+
+### Technical Details
+
+These commands leverage OpenCode's custom command system which:
+- Supports named arguments (`$ARGUMENT_NAME`)
+- Can invoke any available tool (Read, Write, Bash, etc.)
+- Integrates with OpenCode's agent system
+- Provides rich descriptions and usage hints in the command dialog
+
+The gstack skills are implemented as OpenCode command files located in:
+- `opencode/commands/gstack/` (project-specific)
+- Or copied to `~/.config/opencode/commands/gstack/` (user-wide) during setup
+
 ## Build commands
 
 ```bash
